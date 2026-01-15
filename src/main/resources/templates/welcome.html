@@ -1,47 +1,84 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org" 
       th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <body>
-<div class="container">
 
-    <!-- HERO -->
-    <section class="hero">
-        <div>
-            <h1>Modern Care for Pets</h1>
-            <p>
-                Zeeshan's Pet Clinic — jahan aapke paltoo janwaron ko milta hai
-                ghar jaisa sakoon aur modern technology ke saath behtareen ilaj.
-            </p>
-            <a href="/owners/find">Dhoondein Owners</a>
-        </div>
+<div class="home-container">
 
-        <div class="pet-frame">
-            <img th:src="@{/resources/images/pets.png}" src="../static/resources/images/pets.png" alt="Pets">
-        </div>
-    </section>
+    <h2 class="welcome-title" th:text="#{welcome}">Welcome</h2>
 
-    <!-- FEATURES -->
-    <section class="features">
-        <div class="feature-box">
-            <div class="icon">🏥</div>
-            <h3>Expert Care</h3>
-            <p>Experienced doctors aur modern equipment ke saath behtareen treatment.</p>
-        </div>
-
-        <div class="feature-box">
-            <div class="icon">⏰</div>
-            <h3>24/7 Service</h3>
-            <p>Emergency ho ya routine visit, hum har waqt aap ke saath hain.</p>
-        </div>
-
-        <div class="feature-box">
-            <div class="icon">💉</div>
-            <h3>Vaccination</h3>
-            <p>Mukammal vaccination plans jo aapke pets ko mehfooz rakhein.</p>
-        </div>
-    </section>
+    <div class="image-wrapper">
+        <img class="pet-image" 
+             src="../static/resources/images/pets.png" 
+             th:src="@{/resources/images/pets.png}" 
+             alt="Pets">
+    </div>
 
 </div>
+
+<style>
+    /* ===== RESET ===== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f6f9;
+        color: #2c3e50;
+    }
+
+    .home-container {
+        max-width: 900px;
+        margin: 60px auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* ===== WELCOME TITLE ===== */
+    .welcome-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: #1a2a3a;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    /* ===== IMAGE STYLING ===== */
+    .image-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pet-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .pet-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 600px) {
+        .welcome-title {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .pet-image {
+            border-radius: 15px;
+        }
+    }
+</style>
+
 </body>
 </html>

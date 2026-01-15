@@ -1,82 +1,139 @@
 <!DOCTYPE html>
-
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('/resources/images/pets.png');
-            background-size: cover;
-            padding: 80px 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .welcome-title {
-            color: #343a40;
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-        .pet-img {
-            max-width: 500px;
-            margin: 20px auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-        .pet-img:hover {
-            transform: scale(1.05);
-        }
-        .btn-custom {
-            background-color: #6db33f;
+        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
+        
+        .hero-container {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #6db33f 0%, #4e8c2b 100%);
+            border-radius: 30px;
             color: white;
-            padding: 12px 30px;
-            font-size: 1.2rem;
+            margin-top: 20px;
+            box-shadow: 0 15px 35px rgba(109, 179, 63, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 10px;
+        }
+
+        .welcome-title {
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .pet-hero-img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .btn-modern {
+            padding: 15px 40px;
             border-radius: 50px;
-            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .btn-primary-modern {
+            background-color: #ffffff;
+            color: #4e8c2b;
+        }
+
+        .btn-primary-modern:hover {
+            background-color: #343a40;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #6db33f;
+            margin-bottom: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            transition: all 0.3s;
+            border: 1px solid #eee;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            transform: translateY(-10px);
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container text-center">
-        <div class="hero-section">
-            <h1 class="welcome-title" th:text="#{welcome}">Welcome to Petclinic</h1>
-            <p class="lead">Providing the best care for your furry friends, 24/7!</p>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <img class="img-responsive pet-img" 
-                         src="../static/resources/images/pets.png" 
-                         th:src="@{/resources/images/pets.png}" 
-                         alt="Happy Pets" />
+    <div class="container">
+        <div class="hero-container text-center">
+            <div class="row align-items-center p-5">
+                <div class="col-lg-6 text-lg-start">
+                    <h1 class="welcome-title">Care for <br/><span style="color: #f1f1f1;">Every Pet.</span></h1>
+                    <p class="lead mb-4">Aapke paltoo janwaron ki sehat hamari awwal tarjeeh hai. Best vets, modern care.</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                        <a href="/owners/find" class="btn btn-modern btn-primary-modern shadow">Find Owners</a>
+                        <a href="/vets.html" class="btn btn-modern border text-white">View Vets</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <img class="pet-hero-img" th:src="@{/resources/images/pets.png}" src="../static/resources/images/pets.png" />
                 </div>
             </div>
-
-            <div class="mt-4">
-                <a href="/owners/find" class="btn btn-primary btn-lg btn-custom">Find Owners</a>
-                <a href="/vets.html" class="btn btn-outline-secondary btn-lg" style="border-radius: 50px; margin-left: 10px;">Our Vets</a>
-            </div>
         </div>
-        
-        <div class="row mt-5">
-            <div class="col-md-4">
-                <h3>High Quality Care</h3>
-                <p>Expert veterinarians with years of experience.</p>
+
+        <div class="row mt-5 text-center">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-user-md feature-icon"></i>
+                    <h4>Expert Doctors</h4>
+                    <p class="text-muted">Hamare pas expert veterinarians ki team majood hai.</p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h3>Modern Facilities</h3>
-                <p>Equipped with the latest medical technology for pets.</p>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-ambulance feature-icon"></i>
+                    <h4>24/7 Support</h4>
+                    <p class="text-muted">Emergency services har waqt dastyab hain.</p>
+                </div>
             </div>
-            <div class="col-md-4">
-                <h3>Quick Appointments</h3>
-                <p>Easy online booking for your convenience.</p>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card">
+                    <i class="fas fa-heartbeat feature-icon"></i>
+                    <h4>Affordable Care</h4>
+                    <p class="text-muted">Behtareen ilaj, kam se kam akhrajat mein.</p>
+                </div>
             </div>
         </div>
     </div>
 
 </body>
-
 </html>

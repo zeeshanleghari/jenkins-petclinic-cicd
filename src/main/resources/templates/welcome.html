@@ -1,100 +1,47 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <body>
-    <style>
-        .custom-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .hero-card {
-            background: linear-gradient(135deg, #1a2a3a, #6db33f);
-            border-radius: 25px;
-            padding: 50px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            margin-bottom: 50px;
-        }
-        .hero-text { flex: 1; min-width: 300px; padding-right: 20px; }
-        .hero-text h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: white !important; }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
-        
-        .btn-white {
-            display: inline-block;
-            background: white;
-            color: #1a2a3a !important;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn-white:hover { transform: translateY(-3px); background: #f0f0f0; }
+<div class="container">
 
-        .image-side { flex: 0.8; min-width: 300px; }
-        .pet-box {
-            background: white;
-            padding: 10px;
-            border-radius: 20px;
-            transform: rotate(3deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        }
-        .pet-box img { width: 100%; border-radius: 15px; display: block; }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        .f-card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border-bottom: 5px solid #6db33f;
-        }
-        .f-icon { font-size: 2.5rem; margin-bottom: 15px; display: block; }
-    </style>
-
-    <div class="custom-container">
-        <div class="hero-card">
-            <div class="hero-text">
-                <h1>Modern Care for Pets</h1>
-                <p>Zeeshan's Pet Clinic — jahan aapke paltoo janwaron ko milta hai ghar jaisa sakoon aur modern technology ke saath behtareen ilaj.</p>
-                <a href="/owners/find" class="btn-white">Dhoondein Owners</a>
-            </div>
-            <div class="image-side">
-                <div class="pet-box">
-                    <img th:src="@{/resources/images/pets.png}" src="../static/resources/images/pets.png" alt="Pets">
-                </div>
-            </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <h1>Modern Care for Pets</h1>
+            <p>
+                Zeeshan's Pet Clinic — jahan aapke paltoo janwaron ko milta hai
+                ghar jaisa sakoon aur modern technology ke saath behtareen ilaj.
+            </p>
+            <a href="/owners/find">Dhoondein Owners</a>
         </div>
 
-        <div class="feature-grid">
-            <div class="f-card">
-                <span class="f-icon">🏥</span>
-                <h3>Expert Care</h3>
-                <p>Experienced doctors aur modern equipment ke saath behtareen treatment.</p>
-            </div>
-            <div class="f-card">
-                <span class="f-icon">⏰</span>
-                <h3>24/7 Service</h3>
-                <p>Emergency ho ya routine visit, hum har waqt aap ke saath hain.</p>
-            </div>
-            <div class="f-card">
-                <span class="f-icon">💉</span>
-                <h3>Vaccination</h3>
-                <p>Mukammal vaccination plans jo aapke pets ko mehfooz rakhein.</p>
-            </div>
+        <div class="pet-frame">
+            <img th:src="@{/resources/images/pets.png}" src="../static/resources/images/pets.png" alt="Pets">
         </div>
-    </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+        <div class="feature-box">
+            <div class="icon">🏥</div>
+            <h3>Expert Care</h3>
+            <p>Experienced doctors aur modern equipment ke saath behtareen treatment.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="icon">⏰</div>
+            <h3>24/7 Service</h3>
+            <p>Emergency ho ya routine visit, hum har waqt aap ke saath hain.</p>
+        </div>
+
+        <div class="feature-box">
+            <div class="icon">💉</div>
+            <h3>Vaccination</h3>
+            <p>Mukammal vaccination plans jo aapke pets ko mehfooz rakhein.</p>
+        </div>
+    </section>
+
+</div>
 </body>
 </html>

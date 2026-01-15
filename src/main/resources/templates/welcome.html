@@ -2,134 +2,165 @@
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f8f9fa; }
-        
-        .hero-container {
-            padding: 60px 0;
-            background: linear-gradient(135deg, #6db33f 0%, #4e8c2b 100%);
-            border-radius: 30px;
+        /* PURE CSS STYLES */
+        .main-wrapper {
+            padding: 40px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .hero-banner {
+            background: #2c3e50; /* Dark elegant blue */
+            background: linear-gradient(135deg, #1a2a3a 0%, #6db33f 100%);
+            border-radius: 20px;
+            padding: 60px;
             color: white;
-            margin-top: 20px;
-            box-shadow: 0 15px 35px rgba(109, 179, 63, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            margin-bottom: 50px;
             position: relative;
             overflow: hidden;
         }
 
-        /* Glassmorphism Effect */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 20px;
-            margin: 10px;
+        .hero-banner::after {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
         }
 
         .welcome-title {
-            font-weight: 700;
             font-size: 3.5rem;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #ffffff;
         }
 
-        .pet-hero-img {
-            max-width: 100%;
-            height: auto;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
-            animation: float 4s ease-in-out infinite;
+        .sub-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 500px;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .pet-frame {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            transform: rotate(3deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: 0.4s ease;
         }
 
-        .btn-modern {
-            padding: 15px 40px;
+        .pet-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .pet-img-main {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #1a2a3a;
+            padding: 15px 35px;
             border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: inline-block;
+            transition: 0.3s;
             border: none;
+            text-decoration: none;
         }
 
-        .btn-primary-modern {
-            background-color: #ffffff;
-            color: #4e8c2b;
-        }
-
-        .btn-primary-modern:hover {
-            background-color: #343a40;
+        .cta-button:hover {
+            background: #343a40;
             color: white;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* Features Section with Pure CSS */
+        .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-bottom: 5px solid #6db33f;
+            height: 100%;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .feature-box:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
             transform: translateY(-5px);
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
+        .feature-box h3 {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: #f0f9eb;
             color: #6db33f;
-            margin-bottom: 20px;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            transition: all 0.3s;
-            border: 1px solid #eee;
-        }
-
-        .feature-card:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            transform: translateY(-10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="hero-container text-center">
-            <div class="row align-items-center p-5">
-                <div class="col-lg-6 text-lg-start">
-                    <h1 class="welcome-title">Care for <br/><span style="color: #f1f1f1;">Every Pet.</span></h1>
-                    <p class="lead mb-4">Aapke paltoo janwaron ki sehat hamari awwal tarjeeh hai. Best vets, modern care.</p>
-                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                        <a href="/owners/find" class="btn btn-modern btn-primary-modern shadow">Find Owners</a>
-                        <a href="/vets.html" class="btn btn-modern border text-white">View Vets</a>
-                    </div>
+    <div class="container main-wrapper">
+        <div class="hero-banner">
+            <div class="row align-items-center">
+                <div class="col-md-7">
+                    <h1 class="welcome-title">Modern Care for Pets</h1>
+                    <p class="sub-text">Zeeshan's Pet Clinic - Jahan aapke paltoo janwaron ko milta hai ghar jaisa sakoon aur behtareen ilaj.</p>
+                    <a href="/owners/find" class="cta-button shadow">Dhoondein Owners</a>
                 </div>
-                <div class="col-lg-6 mt-5 mt-lg-0">
-                    <img class="pet-hero-img" th:src="@{/resources/images/pets.png}" src="../static/resources/images/pets.png" />
+                <div class="col-md-5">
+                    <div class="pet-frame">
+                        <img class="pet-img-main" th:src="@{/resources/images/pets.png}" src="../static/resources/images/pets.png" alt="Pets" />
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-5 text-center">
+        <div class="row text-center">
             <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <i class="fas fa-user-md feature-icon"></i>
-                    <h4>Expert Doctors</h4>
-                    <p class="text-muted">Hamare pas expert veterinarians ki team majood hai.</p>
+                <div class="feature-box">
+                    <div class="icon-circle">🏥</div>
+                    <h3>Expert Care</h3>
+                    <p>Hamare doctors modern technology ke saath behtareen checkup karte hain.</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <i class="fas fa-ambulance feature-icon"></i>
-                    <h4>24/7 Support</h4>
-                    <p class="text-muted">Emergency services har waqt dastyab hain.</p>
+                <div class="feature-box">
+                    <div class="icon-circle">⏰</div>
+                    <h3>24/7 Service</h3>
+                    <p>Emergency ho ya routine checkup, hum har waqt hazir hain.</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="feature-card">
-                    <i class="fas fa-heartbeat feature-icon"></i>
-                    <h4>Affordable Care</h4>
-                    <p class="text-muted">Behtareen ilaj, kam se kam akhrajat mein.</p>
+                <div class="feature-box">
+                    <div class="icon-circle">💉</div>
+                    <h3>Vaccination</h3>
+                    <p>Mukammal hifazati teekay aur beemariyon se bachao ki tadabeer.</p>
                 </div>
             </div>
         </div>

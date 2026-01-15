@@ -2,14 +2,80 @@
 
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 
+<head>
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url('/resources/images/pets.png');
+            background-size: cover;
+            padding: 80px 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .welcome-title {
+            color: #343a40;
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .pet-img {
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .pet-img:hover {
+            transform: scale(1.05);
+        }
+        .btn-custom {
+            background-color: #6db33f;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
 <body>
 
-  <h2 th:text="#{welcome}">Welcome</h2>
-  <div class="row">
-    <div class="col-md-12">
-      <img class="img-responsive" src="../static/resources/images/pets.png" th:src="@{/resources/images/pets.png}" />
+    <div class="container text-center">
+        <div class="hero-section">
+            <h1 class="welcome-title" th:text="#{welcome}">Welcome to Petclinic</h1>
+            <p class="lead">Providing the best care for your furry friends, 24/7!</p>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <img class="img-responsive pet-img" 
+                         src="../static/resources/images/pets.png" 
+                         th:src="@{/resources/images/pets.png}" 
+                         alt="Happy Pets" />
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="/owners/find" class="btn btn-primary btn-lg btn-custom">Find Owners</a>
+                <a href="/vets.html" class="btn btn-outline-secondary btn-lg" style="border-radius: 50px; margin-left: 10px;">Our Vets</a>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <h3>High Quality Care</h3>
+                <p>Expert veterinarians with years of experience.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Modern Facilities</h3>
+                <p>Equipped with the latest medical technology for pets.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Quick Appointments</h3>
+                <p>Easy online booking for your convenience.</p>
+            </div>
+        </div>
     </div>
-  </div>
 
 </body>
 
